@@ -24,9 +24,22 @@ export const HappyThoughts = () => {
     );
   };
 
+  const addMessage = (message) => {
+    fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: message }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setMessageList([data, ...messageList]);
+      })
+      .catch((error) => console.error("error (App.addMessage", error));
+  };
+
   return (
     <>
-      <MessageForm />
+      <MessageForm addMessage={addMessage} />
       {messageList ? (
         messageList.map((message) => (
           <Message key={message._id} {...message} addHeart={addHeart} />

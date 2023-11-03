@@ -1,6 +1,13 @@
+import { useState } from "react";
 import "./MessageForm.css";
 
-const MessageForm = () => {
+const MessageForm = ({ addMessage }) => {
+  const [message, setMessage] = useState("");
+
+  const handleText = (e) => {
+    setMessage(e.target.value);
+  };
+
   return (
     <>
       <div className="inputBox">
@@ -9,8 +16,12 @@ const MessageForm = () => {
           className="messageInput"
           type="text"
           placeholder="'If music be the food of love, play on.' - William Shakespeare"
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}
         ></textarea>
-        <button>❤️ Send Happy Thought ❤️</button>
+        <button onClick={() => addMessage(message)}>
+          ❤️ Send Happy Thought ❤️
+        </button>
       </div>
     </>
   );
