@@ -1,10 +1,17 @@
 import { useState } from "react";
+import CharacterCount from "./CharacterCount";
 import "./MessageForm.css";
 
 const MessageForm = ({ addMessage }) => {
   const [message, setMessage] = useState("");
+  const [valid, setValid] = useState(false);
 
   const handleText = (e) => {
+    if (e.target.value.length <= 140 && e.target.value.length > 0) {
+      setValid(true);
+    } else {
+      setValid(false);
+    }
     setMessage(e.target.value);
   };
 
@@ -16,12 +23,18 @@ const MessageForm = ({ addMessage }) => {
           className="messageInput"
           type="text"
           placeholder="'If music be the food of love, play on.' - William Shakespeare"
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={handleText}
           value={message}
         ></textarea>
-        <button onClick={() => addMessage(message)}>
-          ❤️ Send Happy Thought ❤️
-        </button>
+        <div className="inputInfo">
+          <button
+            disabled={valid ? false : true}
+            onClick={() => addMessage(message)}
+          >
+            ❤️ Send Happy Thought ❤️
+          </button>
+          <CharacterCount message={message} />
+        </div>
       </div>
     </>
   );
