@@ -1,3 +1,13 @@
+import Header from "./components/Header/Header";
+import MessageForm from "./components/MessageForm/MessageForm";
+import MessageList from "./components/MessageList";
+
 export const App = () => {
-  return <div>Find me in src/app.jsx!</div>;
+  return (
+    <>
+      <Header />
+      <MessageForm />
+      <MessageList />
+    </>
+  );
 };

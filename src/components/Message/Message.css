@@ -1,0 +1,58 @@
+.messageBox {
+	margin: 20px;
+	padding: 20px;
+	background: #efefef;
+	border: 1px solid black;
+	box-shadow: 5px 5px;
+}
+
+.messageBox {
+	width: 38%;
+}
+
+.messageInfo {
+	display: flex;
+	justify-content: space-between;
+  align-items: center;
+	flex-wrap: wrap;
+}
+
+.heartBtn {
+	display: flex;
+	justify-content: space-between;
+}
+
+.heartBtn > div {
+	width: 55px;
+}
+
+.heartBtn > div > button {
+	border: none;
+	border-radius: 50%;
+	background-color: #ccc;
+	transition: 1s ease;
+}
+
+.heartBtn > div > button {
+  animation: grow 1s infinite;
+	animation-direction: alternate;
+}
+
+@keyframes grow {
+  from {width: 48px;height: 48px;font-size: 24px;}
+  to {width: 52px;height: 52px;font-size: 27px;}
+}
+
+.heartBtn > div > button:hover {
+	background-color: #ffccff;
+}
+
+.timestamp {
+	color: #646464;
+}
+
+@media (max-width: 700px) {
+  .messageBox {
+    width: 80%;
+  }
+}
