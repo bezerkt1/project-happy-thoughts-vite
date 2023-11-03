@@ -2,14 +2,14 @@ import HeartButton from "./HeartButton";
 import Timestamp from "./Timestamp";
 import "./Message.css";
 
-const Message = ({ message }) => {
+const Message = ({ _id, message, hearts, createdAt, addHeart }) => {
   return (
     <>
       <div className="messageBox">
-        <p>{message.message}</p>
+        <p>{message}</p>
         <div className="messageInfo">
-          <HeartButton hearts={message.hearts} />
-          <Timestamp time={message.createdAt} />
+          <HeartButton hearts={hearts} addHeart={addHeart} _id={_id} />
+          <Timestamp time={createdAt} />
         </div>
       </div>
     </>
