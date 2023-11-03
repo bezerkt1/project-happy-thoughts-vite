@@ -1,13 +1,11 @@
 import Header from "./components/Header/Header";
-import MessageForm from "./components/MessageForm/MessageForm";
-import MessageList from "./components/MessageList";
+import HappyThoughts from "./components/HappyThoughts";
 
 export const App = () => {
   return (
     <>
       <Header />
-      <MessageForm />
-      <MessageList />
+      <HappyThoughts />
     </>
   );
 };

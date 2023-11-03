@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Message from "./Message/Message";
+import MessageForm from "./MessageForm/MessageForm";
 
-export const MessageList = () => {
+export const HappyThoughts = () => {
   const [messages, setMessages] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts")
@@ -14,21 +14,16 @@ export const MessageList = () => {
 
   return (
     <>
-      {loading ? (
-        messages ? (
-          messages.map((message) => (
-            <Message key={message._id} message={message} />
-          ))
-        ) : (
-          <p>Loading...</p>
-        )
-      ) : (
+      <MessageForm />
+      {messages ? (
         messages.map((message) => (
           <Message key={message._id} message={message} />
         ))
+      ) : (
+        <p>Loading...</p>
       )}
     </>
   );
 };
 
-export default MessageList;
+export default HappyThoughts;
