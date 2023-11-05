@@ -13,15 +13,25 @@ export const HappyThoughts = () => {
   }, []);
 
   const addHeart = (id) => {
-    setMessageList(
-      messageList.map((message) => {
-        if (message._id === id) {
-          return { ...message, hearts: message.hearts + 1 };
-        } else {
-          return message;
-        }
-      })
-    );
+    fetch(
+      `https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts/${id}/like`,
+      {
+        method: "POST",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) =>
+        setMessageList(
+          messageList.map((message) => {
+            if (message._id === data._id) {
+              return data;
+            } else {
+              return message;
+            }
+          })
+        )
+      )
+      .catch((error) => console.error("error (App.addHeart)", error));
   };
 
   return (

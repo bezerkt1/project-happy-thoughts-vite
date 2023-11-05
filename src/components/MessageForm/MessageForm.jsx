@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import CharacterCount from "./CharacterCount";
+import "./MessageForm.css";
 
 export const MessageForm = ({ addMessage }) => {
   const [inputValue, setInputValue] = useState("");
@@ -24,13 +26,16 @@ export const MessageForm = ({ addMessage }) => {
 
     // Add the message
     try {
-      const response = await fetch("https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: inputValue }),
-      });
+      const response = await fetch(
+        "https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: inputValue }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -56,20 +61,21 @@ export const MessageForm = ({ addMessage }) => {
   };
 
   return (
-    <div className='inputBox'>
+    <div className="inputBox">
       <h2>What is making you happy right now?</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type='text'
+        <textarea
+          className="messageInput"
           placeholder="What's making you happy right now?"
           value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
+          onChange={(e) => setInputValue(e.target.value)}
         />
         <button>❤️ Send Happy Thought ❤️</button>
+        <CharacterCount message={inputValue} />
       </form>
-      {error && <p className='error'>{error}</p>}
+      {error && <p className="error">{error}</p>}
     </div>
-  )
+  );
 };
 
-export default MessageForm
+export default MessageForm;

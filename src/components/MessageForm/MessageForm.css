@@ -18,7 +18,7 @@
 	border: 1px solid grey;
 }
 
-.inputBox > button {
+.inputBox > form > button {
 	font-size: 18px;
 	border: none;
 	border-radius: 18px;
@@ -28,7 +28,7 @@
 	transition: 1s ease;
 }
 
-.inputBox > button:hover {
+.inputBox > form > button:hover {
 	background: #ffccff;
 }
 
@@ -36,4 +36,10 @@
   .inputBox {
     width: 80%;
   }
+}
+
+.characterCount {
+	color: #646464;
+	text-align: right;
+	float: right;
 }
