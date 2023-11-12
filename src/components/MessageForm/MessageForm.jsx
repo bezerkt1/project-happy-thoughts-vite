@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CharacterCount from "./CharacterCount";
 import "./MessageForm.css";
+import wordsjson from "./badwords.json";
 
 export const MessageForm = ({ addMessage }) => {
   const [inputValue, setInputValue] = useState("");
@@ -16,8 +17,8 @@ export const MessageForm = ({ addMessage }) => {
     }
 
     // Check for present tense
-    if (!isPresentTense(inputValue)) {
-      setError("Message should be in the present tense.");
+    if (hasProfanity(inputValue)) {
+      setError("Message contains profanity.");
       return;
     }
 
@@ -54,10 +55,17 @@ export const MessageForm = ({ addMessage }) => {
     }
   };
 
-  // Check for present tense using a regular expression
-  const isPresentTense = (text) => {
-    const presentTenseRegex = /(\b(am|is|are|have|has|do|does)\s+\w+)/i;
-    return presentTenseRegex.test(text);
+  // Check for profanity using a regular expression
+  const hasProfanity = (text) => {
+    const badwords = wordsjson.badwords;
+    let hit = false;
+    badwords.forEach((word) => {
+      const regex = new RegExp(`(${word})`, "gim");
+      if (regex.test(text)) {
+        hit = true;
+      }
+    });
+    return hit;
   };
 
   return (
