@@ -46,7 +46,7 @@ export const MessageForm = ({ addMessage }) => {
         setInputValue("");
         // Trigger a function to refresh the messages, if necessary
         if (addMessage) {
-          addMessage(inputValue);
+          addMessage(await response.json());
         }
       }
     } catch (error) {

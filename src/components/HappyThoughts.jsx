@@ -12,6 +12,11 @@ export const HappyThoughts = () => {
       .catch((error) => console.error("error (App.useEffect)", error));
   }, []);
 
+  const addMessage = async (message) => {
+    console.log(message);
+    setMessageList([message, ...messageList]);
+  };
+
   const addHeart = (id) => {
     fetch(
       `https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts/${id}/like`,
@@ -36,7 +41,7 @@ export const HappyThoughts = () => {
 
   return (
     <>
-      <MessageForm />
+      <MessageForm addMessage={addMessage} />
       {messageList ? (
         messageList.map((message) => (
           <Message key={message._id} {...message} addHeart={addHeart} />
